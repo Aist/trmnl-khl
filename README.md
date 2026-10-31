@@ -1,5 +1,7 @@
 # Расписание КХЛ для TRMNL
 
+> **English summary** — KHL Schedule is an independent TRMNLP recipe for showing the Kontinental Hockey League schedule on TRMNL e-ink displays. It shows every game on the current Moscow calendar day, or the next full game day when there are no games today. Data comes directly from the reverse-engineered KHL mobile API; no account, API key, personal server, or proxy is required. The interface is Russian-only and the recipe is not affiliated with or endorsed by the KHL.
+
 Независимый рецепт [TRMNLP](https://github.com/usetrmnl/trmnlp), показывающий расписание Континентальной хоккейной лиги на e-ink-экране. Интерфейс, время и дата — только на русском и всегда в `Europe/Moscow`.
 
 > Рецепт не связан с КХЛ, не одобрен лигой и не является официальным продуктом.
