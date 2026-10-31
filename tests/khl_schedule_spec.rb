@@ -53,7 +53,12 @@ RSpec.describe 'KHL Schedule' do
     run = trmnl.transform(data: { events: [] }, now: '2026-07-10T10:00:00Z', custom_fields:, device: test_device)
 
     expect(run.error).to be_nil
-    expect(run.data).to include('status' => 'empty', 'games' => [])
+    expect(run.data).to include('status' => 'empty', 'seasonOver' => 'Сезон завершен!', 'season_days' => 53, 'games' => [])
+
+    screen = trmnl.render(data: { events: [] }, now: '2026-07-10T10:00:00Z', custom_fields:, device: test_device)
+    expect(screen).to have_text('Сезон завершен!')
+    expect(screen).to have_text('~ 53 дней до начала сезона')
+    expect(screen).to have_no_leaked_text
   end
 
   it 'does not leak an unexpected API object to the display' do

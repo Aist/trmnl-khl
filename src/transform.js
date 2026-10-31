@@ -5,6 +5,8 @@ const COPY = {
   upcoming: 'Ближайшие игры ·',
   noGames: 'Ближайших матчей нет',
   noGamesDetail: 'Следующий игровой день КХЛ пока недоступен.',
+  seasonOver: 'Сезон завершен!',
+  seasonCountdown: 'дней до начала сезона',
   unavailable: 'Расписание временно недоступно',
   unavailableDetail: 'Повторите попытку при следующем обновлении.',
   more: 'матчей',
@@ -35,6 +37,17 @@ function displayTime(date) {
     timeZone: MOSCOW_ZONE,
     hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
   }).format(date);
+}
+
+function daysUntilSeasonStart(now) {
+  const value = parts(now);
+  const year = Number(value.year);
+  const month = Number(value.month);
+  const day = Number(value.day);
+  const currentDay = Date.UTC(year, month - 1, day);
+  const nextSeasonYear = month > 9 || (month === 9 && day > 1) ? year + 1 : year;
+  const seasonStart = Date.UTC(nextSeasonYear, 8, 1);
+  return Math.round((seasonStart - currentDay) / 86_400_000);
 }
 
 function moscowMidnightEpoch(now) {
@@ -71,9 +84,7 @@ function normaliseEvents(data) {
       const start = new Date(Number(event.start_at));
       const home = event.team_a && typeof event.team_a.name === 'string' ? event.team_a.name.trim() : '';
       const away = event.team_b && typeof event.team_b.name === 'string' ? event.team_b.name.trim() : '';
-      const homeLogo = event.team_a && typeof event.team_a.image === 'string' ? event.team_a.image : '';
-      const awayLogo = event.team_b && typeof event.team_b.image === 'string' ? event.team_b.image : '';
-      return { start, home: home || '—', away: away || '—', homeLogo, awayLogo };
+      return { start, home: home || '—', away: away || '—' };
     })
     .filter((game) => !Number.isNaN(game.start.getTime()))
     .sort((left, right) => left.start - right.start);
@@ -104,7 +115,7 @@ async function run(input) {
   })();
 
   if (!selected.length) {
-    return { status: 'empty', ...copy, games: [], overflow: 0 };
+    return { status: 'empty', ...copy, season_days: daysUntilSeasonStart(now), games: [], overflow: 0 };
   }
 
   const selectedDate = dateKey(selected[0].start);
@@ -117,8 +128,6 @@ async function run(input) {
       time: displayTime(game.start),
       home: game.home,
       away: game.away,
-      home_logo: game.homeLogo,
-      away_logo: game.awayLogo,
     })),
     overflow: 0,
   };
