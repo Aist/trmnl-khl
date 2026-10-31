@@ -1,0 +1,8 @@
+[
+  {"event":{"type_id":24,"start_at":1793448000000,"team_a":{"name":"Автомобилист","image":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23000'/%3E%3Cpath d='M6 12h12' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E"},"team_b":{"name":"Металлург Мг","image":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='20' fill='%23000'/%3E%3Ccircle cx='12' cy='12' r='5' fill='%23fff'/%3E%3C/svg%3E"}}},
+  {"event":{"type_id":24,"start_at":1793453400000,"team_a":{"name":"Динамо Мн"},"team_b":{"name":"Динамо М"}}},
+  {"event":{"type_id":24,"start_at":1793458800000,"team_a":{"name":"Сочи"},"team_b":{"name":"Лада"}}},
+  {"event":{"type_id":24,"start_at":1793464200000,"team_a":{"name":"Трактор"},"team_b":{"name":"ЦСКА"}}},
+  {"event":{"type_id":24,"start_at":1793469600000,"team_a":{"name":"Очень длинное название хоккейного клуба"},"team_b":{"name":"Салават Юлаев"}}},
+  {"event":{"type_id":24,"start_at":1793475000000,"team_a":{"name":"Авангард"},"team_b":{"name":"Нефтехимик"}}}
+]

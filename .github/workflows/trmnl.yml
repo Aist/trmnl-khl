@@ -1,0 +1,23 @@
+name: TRMNL recipe checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test recipe
+        run: >-
+          docker run --rm -e CI=true -v "$PWD":/plugin trmnl/trmnlp:latest
+          test --report report
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trmnlp-report
+          path: report
+

@@ -1,0 +1,66 @@
+---
+strategy: polling
+name: Расписание КХЛ
+description: Матчи КХЛ по московскому времени
+recipe_overview: >
+  Расписание КХЛ показывает все матчи текущего московского дня, в том числе
+  уже начавшиеся и завершившиеся. Если сегодня матчей нет, рецепт показывает
+  ближайший игровой день. Данные берутся из mobile API КХЛ, нормализуются в
+  TRMNL Serverless и не требуют аккаунта, ключа API или домашнего сервера.
+  Интерфейс и названия команд выводятся на русском языке. В полноэкранном и
+  половинном представлениях рядом с командами отображаются эмблемы, полученные
+  из ответа API. Это независимый рецепт сообщества, не связанный с КХЛ и не
+  одобренный лигой. Он рассчитан как на плейлист, так и на Mashup.
+  Обновление происходит один раз в пятнадцать минут. Если источник временно
+  недоступен, экран показывает понятное нейтральное сообщение без технических
+  деталей. Пользователь может ограничить число матчей, выбрать плотность
+  макета и скрыть дату, но часовой пояс всегда остаётся московским.
+polling_verb: get
+# The lightweight object response starts the Serverless transform. It then makes
+# the one schedule request itself, because events_v2.json returns a root array
+# and polling plugins require an object response.
+polling_url: https://khl.api.webcaster.pro/api/khl_mobile/data.json?locale=ru
+polling_headers: ''
+refresh_interval: 15
+no_screen_padding: 'no'
+dark_mode: 'no'
+framework_version: latest
+serverless_language: node
+custom_fields:
+  - keyname: layout
+    name: Макет
+    field_type: select
+    description: Автоматический вариант учитывает размер экрана или Mashup.
+    options:
+      - Авто: auto
+      - Компактный: compact
+      - Стандартный: standard
+      - Широкий: wide
+    default: auto
+  - keyname: max_games
+    name: Максимум матчей
+    field_type: select
+    description: Авто использует доступное место выбранного макета.
+    options:
+      - Авто: auto
+      - '2': '2'
+      - '3': '3'
+      - '4': '4'
+      - '6': '6'
+    default: auto
+  - keyname: show_date
+    name: Показывать дату матчей
+    field_type: boolean
+    default: true
+  - keyname: about
+    name: О рецепте
+    field_type: author_bio
+    category: sports
+    github_url: https://github.com/Aist/trmnl-khl
+    learn_more_url: https://github.com/Aist/trmnl-khl
+    description: >
+      Независимый рецепт расписания Континентальной хоккейной лиги. Использует
+      reverse-engineered mobile API КХЛ, описанный в shayypy/khl-api; это не
+      официальный публичный API и он может измениться без предупреждения.
+      Сообщайте о проблемах через GitHub Issues этого рецепта.
+

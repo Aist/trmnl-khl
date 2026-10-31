@@ -1,0 +1,8 @@
+---
+watch:
+  - .trmnlp.yml
+  - src
+custom_fields: {}
+variables:
+  trmnl: {}
+

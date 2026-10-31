@@ -1,0 +1,7 @@
+[
+  {"event":{"type_id":24,"start_at":1793448000000,"team_a":{"name":"Автомобилист"},"team_b":{"name":"Металлург Мг"}}},
+  {"event":{"type_id":12,"start_at":1793451600000,"team_a":{"name":"Studio"},"team_b":{"name":"Ignored"}}},
+  {"event":{"type_id":24,"start_at":1793530800000,"team_a":{"name":"Динамо Мн"},"team_b":{"name":"Динамо М"}}},
+  {"event":{"type_id":24,"start_at":1793544400000,"team_a":{"name":"Очень длинное название хоккейного клуба"},"team_b":{"name":"Автомобилист"}}}
+]
+
